@@ -18,3 +18,10 @@ preorder(T,L) :- bTree(T(_,_,Right)), preorder(Right,L).
 inorder(T,L) :- bTree(T), bTree(T(N,Left,Right)), append(Left,[N|Right],L).
 inorder(T,L) :- bTree(T(N,_,_)), inorder(N,L).
 inorder(T,L) :- bTree(T(_,_,Right)), inorder(Right,L).
+
+/* postorder traversal */
+postorder(T,L) :- bTree(T), bTree(T(N,Left,Right)), append(Left,[Right|N],L).
+postorder(T,L) :- bTree(T(_,_,Right)), inorder(Right,L).
+postorder(T,L) :- bTree(T(N,_,_)), append(_,[_|N],L).
+
+/* search */
