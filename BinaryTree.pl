@@ -13,3 +13,8 @@ bTree(tree(N,Left,Right)) :- Left =< N, N < Right.
 preorder(T,L) :- bTree(T), bTree(T(N,Left,Right)), append(N,[Left|Right],L).
 preorder(T,L) :- bTree(T(_,Left,_)), preorder(Left,L).
 preorder(T,L) :- bTree(T(_,_,Right)), preorder(Right,L).
+
+/* inorder traversal */
+inorder(T,L) :- bTree(T), bTree(T(N,Left,Right)), append(Left,[N|Right],L).
+inorder(T,L) :- bTree(T(N,_,_)), inorder(N,L).
+inorder(T,L) :- bTree(T(_,_,Right)), inorder(Right,L).
