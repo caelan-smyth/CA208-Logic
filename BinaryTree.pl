@@ -25,3 +25,13 @@ postorder(T,L) :- bTree(T(_,_,Right)), inorder(Right,L).
 postorder(T,L) :- bTree(T(N,_,_)), append(_,[_|N],L).
 
 /* search */
+search(T,I) :- bTree(T(I,_,_)).
+search(T,I) :- bTree(T(_,I,_)).
+search(T,I) :- bTree(T(_,_,I)).
+search(T,I) :- bTree(T(_,N,_)), search(N,I).
+search(T,I) :- bTree(T(_,_,N)), search(N,I).
+
+/* height */
+height(T,H) :- bTree(T(nil,nil,nil)), H is 0.
+height(T,H) :- bTree(T(_,nil,nil)), H is 1.
+height(T,H) :- bTree(T(_,Left,Right)), height(Left,H1), height(Right,H2), H is max(H1,H2) + 1.
