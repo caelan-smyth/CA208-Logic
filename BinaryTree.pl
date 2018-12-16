@@ -35,3 +35,8 @@ search(T,I) :- bTree(T(_,_,N)), search(N,I).
 height(T,H) :- bTree(T(nil,nil,nil)), H is 0.
 height(T,H) :- bTree(T(_,nil,nil)), H is 1.
 height(T,H) :- bTree(T(_,Left,Right)), height(Left,H1), height(Right,H2), H is max(H1,H2) + 1.
+
+/* insert */
+insert(I,T1,T2) :- bTree(T1(X,L,_)), bTree(T2(X,L,I)).
+insert(I,T1,T2) :- bTree(T1(nil,nil,nil)), bTree(T2(I,nil,nil)).
+insert(I,T1,T2) :- bTree(T1(X,L,_)), bTree(T2(X,L,I)).
